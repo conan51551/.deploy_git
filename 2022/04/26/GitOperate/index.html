@@ -72,10 +72,12 @@
 
 <h2 id="回退-master-提交"><a href="#回退-master-提交" class="headerlink" title="回退 master 提交"></a>回退 master 提交</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git checkout master // 切换至master</span><br><span class="line">git checkout -b master-backup  // 备份master</span><br><span class="line">git push origin master-backup // 将备份推送到origin</span><br><span class="line">git checkout master // 切换至master</span><br><span class="line">git reset [HEAD^1 | 052e($commit id)]   // reset上一次或指定提交记录</span><br><span class="line">git checkout . // 丢弃本地的修改</span><br><span class="line">git push --delete origin master // 将origin master删除</span><br><span class="line">git push origin master // 将本地master推到origin</span><br></pre></td></tr></table></figure>
 
+<h2 id="查询一个月内某个人的代码提交行数"><a href="#查询一个月内某个人的代码提交行数" class="headerlink" title="查询一个月内某个人的代码提交行数"></a>查询一个月内某个人的代码提交行数</h2><p>输出的样式类似 <code>added lines: 1659, removed lines: 450, total lines: 1209</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --author=&quot;name&quot; --pretty=tformat: --numstat --since=&#x27;1 month ago&#x27;  | awk &#x27;&#123; add += $1; subs += $2; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc &#125;&#x27;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/04/26/GitOperate/" data-id="clg1q4au70007n14j6q7060a4" class="article-share-link">
+      <a data-url="http://example.com/2022/04/26/GitOperate/" data-id="clkw1njjx0007ak4j6c4g10nr" class="article-share-link">
         分享
       </a>
       
